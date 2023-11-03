@@ -1,5 +1,4 @@
-# Identify Susceptible Locations in Medical Records via Adversarial Attacks on Deep Predictive Models
-
+# Understanding Adversarial Attacks on Deep Predictive Models for Electronic Medical Records
 Based on the original paper [here](https://arxiv.org/abs/1802.04822). 
 
 ## Code Usage
