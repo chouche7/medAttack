@@ -85,6 +85,7 @@ def process_sequences(data, feature_ids, n_train, n_features):
         missing_features = np.zeros((len(transformed), missing))
         missing_features = pd.DataFrame(missing_features, columns = missing_ids)
         transformed = pd.concat((transformed, missing_features), axis = 1)
+        transformed = transformed.reindex(sorted(transformed.columns), axis=1)
         
         if len(transformed) >= max_sequence_length:
             processed_data[i] = transformed[-max_sequence_length:]  # Truncate long sequences
