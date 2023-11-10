@@ -21,14 +21,15 @@ vital_items = pd.read_csv("../../mimic3/data/D_ITEMS.csv")
 
 #extract item_ids
 vitals = ["heart rate", "non invasive blood pressure systolic", "non invasive blood pressure diastolic", "temperature celsius", "respiratory rate", "par-oxygen saturation"]
-lab = ["lactate", "pc02", "ph", "albumin", "bicarbonate", "calcium",\
+lab = ["lactate", "pco2", "ph", "albumin", "bicarbonate", "calcium",\
         "creatinine", "glucose", "magnesium", "potassium", "sodium", \
-            "blood urea nitrogen", "platelet count"]
+            "urea nitrogen", "platelet count"]
 
 
-#select only the labevents that pertain to the 16 tests
+#select only the labevents that pertain to the 13 tests
 lab_items["LABEL"] = lab_items["LABEL"].map(str.lower)
 lab_item_id = lab_items.loc[lab_items["LABEL"].isin(lab), "ITEMID"] 
+lab_item_id = lab_item_id[(lab_item_id != 50931) & (lab_item_id != 50831) & (lab_item_id != 51491) & (lab_item_id != 51094) & (lab_item_id != 51478)]
 lab_events = lab_events.loc[lab_events["ITEMID"].isin(lab_item_id)]
 lab_events = lab_events[["SUBJECT_ID", "ITEMID", "VALUENUM", "CHARTTIME"]]
 lab_events = lab_events[lab_events["VALUENUM"].notnull()]

@@ -127,7 +127,7 @@ grouped = features_df.groupby(['SUBJECT_ID'])
 
 # Initialize a 3D array to store the data and padd sequences
 n_train = len(features_df['SUBJECT_ID'].unique())
-n_features = 22
+n_features = 19
 feature_3d = process_sequences(grouped, feature_ids, n_train, n_features)
 feature_3d = np.nan_to_num(feature_3d)
 
@@ -140,10 +140,10 @@ skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
 
 np.random.seed(0)
 
+fold = 0
+    
 for train_index, test_index in skf.split(X, y):
-    
-    fold = 0
-    
+
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y[train_index], y[test_index]
     #ids_train, ids_test = ids[train_index], ids[test_index]
